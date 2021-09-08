@@ -45,6 +45,7 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 	};
 	$scope.authority_changed = function(acc, role){
 		var authority = $scope.authority_of(acc, role);
+		
 		if(authority){ // đã cấp quyền ==> thu hồi quyền (xóa)
 			$scope.revoke_authority(authority);
 		}else{ // chưa cấp quyền ==> cấp quyền (thêm mới)
@@ -60,6 +61,7 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 			$scope.authorities.splice(index, 1);
 			alert("Thu hồi quyền thành công!");
 			window.location.reload();
+			console.log(authority);
 		}).catch(error => {
 			alert("Thu hồi quyền thất bại!");
 			window.location.reload();
@@ -68,14 +70,16 @@ app.controller("authority-ctrl", function($scope, $http, $location) {
 	}
 
 	$scope.grant_authority = function(authority){
-	//	console.log(authority);
+	
 		$http.post(`/rest/authorities`, authority).then(resp => {
 			$scope.authorities.push = resp.data;
 			alert("Cấp quyền thành công!");
-			window.location.reload();
+			console.log(authority);
+			//window.location.reload();
 		}).catch(error => {
 			alert("Cấp quyền thất bại!");
-			window.location.reload();
+			
+			//window.location.reload();
 			console.log("Error", error);
 		});
 	}

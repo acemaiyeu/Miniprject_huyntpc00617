@@ -89,14 +89,7 @@ public Product create(@RequestBody Product product, @PathVariable("supplierid") 
 	 price.setPrice_output_new(product.getPrice()+(product.getPrice()*0.2));
 	 price.setProduct(pro);
 	 price.setDate_output(datenew);
-	// System.out.println(date +" date");
 	 priceService.save(price);
-	 //them input san pham
-//	 List<Supplier> listsp = supplierservice.getAll();
-//	 Supplier sp = new Supplier();
-//	 for(Supplier s : listsp) {
-//		 sp = s;
-//	 }
 	 Input_product in = new Input_product();
 	 in.setDate_input(datenew);
 	 in.setQuantity(pro.getQty());
@@ -113,7 +106,7 @@ public Product create(@RequestBody Product product, @PathVariable("supplierid") 
 public void delete(@PathVariable("id") Integer id) {
 	List<Price> price = priceService.getProductId(id);
 	for(Price p : price) {
-		if(p.getProduct().getProductidl() == id) {
+		if(p.getProduct().getProductidl().equals(id)) {
 			priceService.deleteByID(p.getPriceid());
 		}
 	}
@@ -121,7 +114,7 @@ public void delete(@PathVariable("id") Integer id) {
 	List<Color> listcolor = colorservice.getProductID(id);
 	for(Color c : listcolor) {
 		if(c.getProduct().getProductidl() == id) {
-			priceService.deleteByID(c.getColorid());
+			colorservice.deleteByID(c.getColorid());
 		}
 	}
 	Input_product inp = insertvice.getProductid(id);
