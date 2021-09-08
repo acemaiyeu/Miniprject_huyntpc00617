@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: layoutindex(~{::main})}">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<main>
+		<div th:each="p:${items}" class="col-sm-4">
+		<div class="panel panel-primary poly-item text-center">
+			<div class="panel-headding">
+			<div class="panel-title" th:utext="${p.productname}"></div>
+			</div>
+			<div class="panel-body">
+			<a th:href="@{|/product/detail/${p.productidl}|}">
+				<img style="min-height: 15rem" th:src="@{|/assets/images/${p.imagename1}|}">
+			</a>
+			
+		</div>
+		<div class="panel-footer text-right">
+			<span th:each="price:${p.ListPrice}">
+			<span th:if="${price.product.productidl == p.productidl}">
+			<b class="pull-left" th:text="${#numbers.formatDecimal(price.Price_output_new, 0, 'COMMA', 2, 'POINT')}"></b></span>
+			</span>
+			<button th:attr="ng-click=@{|cart.add(${p.productidl})|}" class="btn btn-success">
+			<i class="glyphicon glyphicon-shopping-cart	"></i>
+			</button>
+		</div>
+		</div>
+		</div>
+	</main>
+</body>
+</html>

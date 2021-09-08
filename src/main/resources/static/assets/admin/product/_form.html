@@ -1,0 +1,175 @@
+<div class="panel panel-default">
+	<div class="panel-heading">PRODUCT EDITTION</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-4 text-center">
+				<label for="image" style="height: 16rem">
+					<img alt="errror" ng-src="{{'/assets/images/'+ form.imagename1}}" style="max-width: 50%;" alt="">
+				</label>
+				<label for="image" style="height: 16rem">
+					<img alt="errror" ng-src="{{'/assets/images/'+ form.imagename2}}" style="max-width: 50%;" alt="">
+				</label>
+				<label for="image" style="height: 16rem">
+					<img alt="errror" ng-src="{{'/assets/images/'+ form.imagename3}}" style="max-width: 50%;" alt="">
+				</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Name</div>
+						<input ng-model="form.productname" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Price</div>
+						<input ng-model="form.price" class="form-control">
+					</div>	
+					<div class="form-group col-sm-6">
+						<div>Quantity</div>
+						<input ng-model="form.qty" class="form-control">
+					</div>	
+					<div class="form-group col-sm-6">
+						<div>Supplier</div>
+						<select ng-model="formsub.supplierid" class="form-control">
+							<option ng-repeat="sup in supplier" ng-value="sup.supplierid">{{sup.suppliername}}</option>
+						</select>
+					</div>	
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Image1</div>
+						<input onchange="angular.element(this).scope().imageChanged1(this.files)" type="file" id="image" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Image2</div>
+						<input onchange="angular.element(this).scope().imageChanged2(this.files)" type="file" id="image1" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Image3</div>
+						<input onchange="angular.element(this).scope().imageChanged3(this.files)" type="file" id="image2" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Category</div>
+						<select ng-model="form.category.categoryid" class="form-control">
+							<option ng-repeat="c in cates" ng-value="c.categoryid">{{c.categoryid}}</option>
+						</select>
+					</div>
+					<span ng-if="edittrue == false">
+					<div class="form-group col-sm-6">
+						<div>Color</div>
+						<span ng-repeat="colord in colorsdetails">
+						<input type="checkbox"  ng-click="alert(this.colord.colorid)" ng-value="{{colord.colorid}}">{{colord.colorname}}
+						</span>
+					</div>
+					</span>	
+					<span ng-if="edittrue == true">
+					<div class="form-group col-sm-6">
+						<div>Color</div>
+						
+						<span  ng-repeat="color in colorsname">
+						<input type="checkbox" ng-click="alert(this.color.colorsdetails.colorid)" checked  ng-value="{{color.colorsdetails.colorid}}">{{color.colorsdetails.colorname}}
+						</span>
+					</div>	
+					</span>
+					
+							<div class="form-group col-sm-6">
+						<div>Description</div>
+						<select ng-model="form.descriptions.descriptionid" class="form-control">
+							<option ng-repeat="d in descriptions" ng-value="{{d.descriptionid}}">{{d.descriptionid}}</option>
+						</select>
+					</div>	
+				</div>
+				<div class="row">
+				<span ng-if="editproduct == false">
+						<div class="form-group col-sm-6">
+						<div>CreateDate</div>
+						<input ng-model="form.createdate" ng-change="checkdate()" type="date" class="form-control">
+					</div>
+				</span>
+				<span ng-if="editproduct == true">
+						<div class="form-group col-sm-6">
+						<div>CreateDate</div>
+						<input ng-model="form.createdate" readonly ng-change="checkdate()" type="date" class="form-control">
+					</div>
+				</span>
+				
+					<div class="form-group col-sm-6">
+						<div>Available?</div>
+						<div class="form-control">
+							<label class="radio-inline">
+								<input ng-model="form.status" type="radio" ng-value="true" name="available">Yes
+							</label>
+							<label class="radio-inline">
+								<input ng-model="form.status" type="radio" ng-value="false" name="available">No
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+</div>
+<div class="panel-footer text-center">
+	<button ng-disabled="statusbutton(form.productidl)" ng-click="create()" class="btn btn-primary">
+		<b  class="glyphicon glyphicon-plus"></b>Create
+	</button>
+	<button ng-disabled="StatusButtonDeleteUpdate(form.productidl)" ng-click="update()" class="btn btn-success">
+		<b class="glyphicon glyphicon-save"></b>Update
+	</button>
+	<button ng-disabled="StatusButtonDeleteUpdate(form.productidl)" ng-click="delete(form)" class="btn btn-danger">
+		<b class="glyphicon glyphicon-trash"></b>Delete
+	</button>
+	<button ng-disabled="StatusButtonDeleteUpdate(form.productidl)" ng-click="reset()" class="btn btn-danger">
+		<b class="glyphicon glyphicon-refresh"></b>Reset
+	</button>
+</div>
+<span ng-if="editform == true">
+<div panel-heading">COLOR EDITTION</div>
+	<div class="panel-body ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="form-group col-sm-4">
+						<div>ProductID</div>
+						<select ng-model="formcolor.product.productidl" ng-change="getnameproduct()" class="form-control">
+							<option ng-repeat="pro in items" ng-value="{{pro.productidl}}">{{pro.productidl}}</option>
+						</select>
+					</div>	
+					<div class="form-group col-sm-5">
+						<div>ProductID</div>
+					<input ng-model="productname" readonly class="form-control">
+					</div>	
+					<div class="form-group col-sm-3">
+						<div>Color</div>
+						<select ng-model="formcolor.colorsdetails.colorid" class="form-control">
+							<option ng-repeat="co in colorsdetails" ng-value="co.colorid">{{co.colorname}}</option>
+						</select>
+					</div>	
+			</div>
+			<div class="panel-footer text-center">
+	<button ng-click="createcolor(formcolor)" class="btn btn-primary">
+		<b  class="glyphicon glyphicon-plus"></b>Create
+	</button>
+	<button ng-click="deletecolor(formcolor)" class="btn btn-default">
+		<b class="glyphicon glyphicon-trash"></b>Delete
+	</button>
+	<button ng-click="resetcolor()" class="btn btn-default">
+		<b class="glyphicon glyphicon-refresh"></b>Reset
+	</button>
+</div>
+		</div>
+		</div>
+		</div>
+		</span>
+
+<div class="panel-footer text-center">
+<div ng-if="editform == false">
+<button ng-click="coloredit()" class="btn btn-info">
+		<b class="glyphicon glyphicon-refresh"></b>Add Color
+	</button>
+	</div>
+	<div ng-if="editform == true">
+	<button ng-click="hiddencolor()" class="btn btn-info">
+		<b class="glyphicon glyphicon-refresh"></b>Hidden Color
+	</button>
+	</div>
+	</div>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: layoutindex(~{::main})}">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<main>
+		<div th:object="${order}">
+			<div class="panel panel-primary">
+				<div class="panel panel-heading">ORDER IMFOMATION</div>
+				<div class="panel panel-body">
+					<div class="row">
+						<div class="form-group col-sm-4">
+							<div>Order Number:</div>
+							<input th:field="*{orderid}" class="form-control" readonly>
+						</div>
+						<div class="form-group col-sm-4">
+							<div>Purchaser:</div>
+							<input th:field="*{accounts.username}" class="form-control"
+								readonly>
+						</div>
+						<div class="form-group col-sm-4">
+							<div>Purchaser Date:</div>
+							<input th:field="*{Orderdate}" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-12">
+							<div>Shipping Address:</div>
+							<textarea th:field="*{Shipaddress}" class="form-control"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr>
+			<div class="panel panel-primary">
+				<div class="panel panel-heading">ORDER LINES</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="detail: *{listorderdetailstemp}" th:object="${detail}">
+							<td>[[*{product.productidl}]]</td>
+							<td>[[*{product.productname}]]</td>
+							<td>$[[*{#numbers.formatDecimal(price, 0, 'COMMA', 2,
+								'POINT')}]]</td>
+							<td>[[*{quantity}]]</td>
+							<td>$[[*{#numbers.formatDecimal(price*quantity, 0, 'COMMA',
+								2, 'POINT')}]]</td>
+						</tr>
+					</tbody>
+				</table>
+
+				
+			</div>
+			</div>
+	</main>
+</body>
+</html>

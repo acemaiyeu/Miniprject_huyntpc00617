@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layoutindex(main)">
+<head>
+<meta charset="utf-8">
+<title>Java 6 Project</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link href="/assets/css/shopping-cart-app.css" rel="stylesheet"/>
+</head>
+<style>
+h6>a, h6,h3{
+	color: #D6D6D6;	
+	text-decoration: none;
+	}
+	h6>a:hover{
+	color: #D6D6D6;	
+	text-decoration: underline;
+	}
+	</style>
+<body class="container" ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+    <header class="row"></header>
+    <nav class="row">
+        <div th:replace="~{/layout/_menu.html}"></div>
+    </nav>
+    <div class="row">
+        <article class="col-sm-9">
+            <div th:replace="${main}"></div>
+        </article>
+        <aside class="col-sm-3">
+            <div th:replace="~{/layout/_card-info.html}"></div>
+            <div th:replace="~{/layout/_category.html}"></div>
+        </aside>
+    </div>
+    <footer class="row">
+    	<div class="row col-sm-12" style="background-color: #800202; height: 24rem; margin-left: 0rem;">
+			<div class="col-sm-12"></div>
+			<div class="col-sm-2"></div>
+				<div class="col-sm-3"> 
+					
+					<div style="text-align: left; margin-left: 6rem; color: white">
+					<h3>CỬA HÀNG</h3>
+					<div class="col-sm-12"> <h6>Tên pháp lý: Shop Đàn HShop</h6> </div>
+					<div class="col-sm-12"> <h6>288 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ</h6> </div>
+					<div class="col-sm-12"> <h6>SĐT: 0375011406</h6> </div>
+					<div class="col-sm-12"><h6><a href="/product/googlemap" class="btn btn-primary" style="background-color: darkgray">Vị Trí Shop (Google Map)</a></h6> 
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+				<div style="margin-left: 6rem;">
+				<h3>HƯỚNG DẪN</h3>
+				<h6> <a href="#">Thông Tin Liên Hệ</a></h6>
+				<h6> <a href="#">Hỏi Đáp - Góp Ý</a></h6>
+				<h6> <a href="#">Chính Sách Trả Hàng</a></h6>
+				<h6> <a href="#">Chính Sách Bảo Hành</a></h6></div>
+				</div>
+				<div class="col-sm-2"> 
+				<div style="margin-left: 6rem;">
+				<h3>THAM KHẢO</h3> 
+				<h6> <a href="#">Thông Báo Mới</a> </h6>
+				<h6> <a href="#">Điều Khoản Sử Dụng</a> </h6>
+				<h6> <a href="#">Bảo Mật Thông Tin</a> </h6>
+				<img alt="" src="https://cdn3.dhht.vn/wp-content/uploads/2019/09/thong-bao-bo-cong-thuong.png">
+				</div>
+				</div>
+				
+		</div>
+    </footer>
+    <script src="/assets/js/shopping-cart-app.js"></script>
+</body>
+</html>

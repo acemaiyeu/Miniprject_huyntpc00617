@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+	<div class="panel-heading">ACCOUNTS EDITTION</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-4 text-center">
+				<label for="image">
+					<img alt="errror" ng-src="{{'/assets/images/'+ form.photo}}" style="max-width: 100%; height: 250px" alt="">
+				</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<span ng-if="editform == false">
+					<div class="form-group col-sm-12">
+						<div>Username:</div>
+						<input ng-model="form.username"  class="form-control">
+					</div>
+					</span>
+					<span ng-if="editform == true">
+					<div class="form-group col-sm-12">
+						<div>Username:</div>
+						<input ng-model="form.username" readonly
+						 class="form-control">
+					</div>
+					</span>
+					
+					<div class="form-group col-sm-12">
+						<div>Fullname:</div>
+						<input ng-model="form.fullname" class="form-control">
+					</div>	
+					<div class="form-group col-sm-12">
+						<div>Photo</div>
+						<input onchange="angular.element(this).scope().imageChanged(this.files)" type="file" id="image" class="form-control">
+					</div>
+				<div class="form-group col-sm-12">
+						<div>Email:</div>
+						<input ng-model="form.email" type="email" class="form-control">
+					</div>	
+				</div>
+					
+				
+			</div>
+	</div>
+</div>
+</div>
+<div class="panel-footer text-center">
+	<button ng-disabled="statusb(username)"  ng-click="create()" class="btn btn-primary">
+		<b  class="glyphicon glyphicon-plus"></b>Create
+	</button>
+	<button ng-click="update()" class="btn btn-success">
+		<b class="glyphicon glyphicon-save"></b>Update
+	</button>
+	<button ng-click="delete(form)" class="btn btn-danger">
+		<b class="glyphicon glyphicon-trash"></b>Delete
+	</button>
+	<button ng-click="reset()" class="btn btn-info">
+		<b class="glyphicon glyphicon-refresh"></b>Reset
+	</button>
+</div>

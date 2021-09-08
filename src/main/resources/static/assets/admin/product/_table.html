@@ -1,0 +1,166 @@
+<div class="panel panel-default">
+	<div class="panel-heading">PRODUCT LIST</div>
+	<table class="table table-condensed">
+		<thead class="bg-success" style="font-variant: small-caps;">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Date</th>
+			<th>Image1</th>
+			<th>Image2</th>
+			<th>Image3</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th>Available</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in pager.items">
+				<td>{{item.productidl}}</td> 
+				<td>{{item.productname}}</td>
+				<td>{{item.price | number:2}}</td>
+				<td>{{item.createdate | date: 'dd-MM-yyyy'}}</td>
+				<td>{{item.imagename1}}</td>
+				<td>{{item.imagename2}}</td>
+				<td>{{item.imagename3}}</td>
+				<td>{{item.category.categoryname}}</td>
+				<td>{{item.descriptions.descriptionid}}</td>
+				<td>{{item.status  ? 'Yes':'No'}}</td>
+				<td>
+					<div class="btn-group btn-group-xs">
+						<button ng-click="edit(item)" class="btn btn-warning glyphicon glyphicon-edit"></button>
+						<button ng-click="delete(item)" class="btn btn-danger glyphicon glyphicon-trash"></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="panel-footer text-center">
+		<button ng-click="pager.first()" class="btn btn-danger">
+			<b class="glyphicon glyphicon-hand-up"></b>
+		</button>
+		<button ng-click="pager.prev()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-left"></b>
+		</button>
+		<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+		<button  ng-click="pager.next()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-right"></b>
+		</button>
+		<button ng-click="pager.last()" class="btn btn-danger">
+			<b class="glyphicon glyphicon-hand-down"></b>
+		</button>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">COLOR LIST</div>
+	<table class="table table-condensed">
+		<thead class="bg-success" style="font-variant: small-caps;">
+		<tr>
+			<th>ProductID</th>
+			<th>ProductName</th>
+			<th>ColorName</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in pagercolor.items">
+				<td>{{item.product.productidl}}</td> 
+				<td>{{item.product.productname}}</td>
+				<td>{{item.colorsdetails.colorname}}</td>
+				<td>
+					<div class="btn-group btn-group-xs">
+						<button ng-click="editcolor(item)" class="btn btn-warning glyphicon glyphicon-edit"></button>
+						<button ng-click="deletecolor(item)" class="btn btn-danger glyphicon glyphicon-trash"></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="panel-footer text-center">
+		<button ng-click="pagercolor.first()" class="btn btn-danger">
+			<b class="glyphicon glyphicon-hand-up"></b>
+		</button>
+		<button ng-click="pagercolor.prev()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-left"></b>
+		</button>
+		<button class="btn btn-success">{{pagercolor.pagec + 1}} of {{pagercolor.count}}</button>
+		<button  ng-click="pagercolor.next()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-right"></b>
+		</button>
+		<button ng-click="pagercolor.last()" class="btn btn-danger">
+			<b class="glyphicon glyphicon-hand-down"></b>
+		</button>
+	</div>
+</div>
+<!-- Descriptions -->
+<div class="panel panel-default">
+	<div class="panel-heading">DESCRIPTIONS LIST</div>
+	<table class="table table-condensed">
+		<thead class="bg-success" style="font-variant: small-caps;">
+		<tr>
+			<th>Id</th>
+			<th>Brand</th>
+			<th>Model</th>
+			<th>Internal Memory</th>
+			<th>Creen Size</th>
+			<th>Ram</th>
+			<th>Network</th>
+			<th>Sim Slot</th>
+			<th>Waterproof</th>
+			<th>Resolution</th>
+			<th>Operating system</th>
+			<th>Rear Camera</th>
+			<th>Front Camera</th>
+			<th>MicroUSB</th>
+			<th>The Battery</th>
+			<th>Origin</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in pagerdescription.items">
+				<td>{{item.descriptionid}}</td> 
+				<td>{{item.brand.brandname}}</td>
+				<td>{{item.model.modelname}}</td>
+				<td>{{item.internal_memory}}</td>
+				<td>{{item.screen_size}}</td>
+				<td>{{item.ram}}</td>
+				<td>{{item.network}}</td>
+				<td>{{item.sim_slot}}</td>
+				<td>{{item.waterproof ? 'Yes':'No'}}</td>
+				<td>{{item.resolution}}</td>
+				<td>{{item.operating_system}}</td>
+				<td>{{item.rear_camera}}</td>
+				<td>{{item.front_camera}}</td>
+				<td>{{item.bluetooth ? 'Yes':'No'}}</td>
+				<td>{{item.microusb}}</td>
+				<td>{{item.the_battery}}</td>
+				<td>{{item.origin}}</td>
+				<td>
+					<div class="btn-group btn-group-xs">
+						<button ng-click="edit(item)" class="btn btn-warning glyphicon glyphicon-edit"></button>
+						<button ng-click="delete(item)" class="btn btn-danger glyphicon glyphicon-trash"></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="panel-footer text-center">
+		<button ng-click="pagerdescription.first()" class="btn btn-danger">
+			<b class="glyphicon glyphicon-hand-up"></b>
+		</button>
+		<button ng-click="pagerdescription.prev()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-left"></b>
+		</button>
+		<button class="btn btn-success">{{pagerdescription.page + 1}} of {{pagerdescription.count}}</button>
+		<button  ng-click="pagerdescription.next()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-right"></b>
+		</button>
+		<button ng-click="pagerdescription.last()" class="btn btn-danger">
+			<b class="glyphicon glyphicon-hand-down"></b>
+		</button>
+	</div>
+</div>
+<script src="/assets/admin/product/product-ctrl.js"></script>

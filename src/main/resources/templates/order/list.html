@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: layoutindex(~{::main})}">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<main>
+		<div class="panel panel-primary">
+			<div class="panel panel-heading">YOUR ORDERS PURCHASED</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Order No.</th>
+						<th>Order Date</th>
+						<th>Shipping Address</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="order, state: ${orders}">
+						<td>[[${state.index}]]</td>
+						<td>[[${order.orderid}]]</td>
+						<td>[[${order.Orderdate}]]</td>
+						<td>[[${order.Shipaddress}]]</td>
+						<td><a th:href="@{|/order/detail/${order.orderid}|}"
+							class="btn btn-default"> <b
+								class="glyphicon glyphicon-search"></b>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</body>
+</html>

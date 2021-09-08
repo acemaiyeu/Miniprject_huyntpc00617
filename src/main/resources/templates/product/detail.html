@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: layoutindex(~{::main})}">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<main>
+		<div th:object="${item}" class="poly-item-detail">
+			<div class="row">
+				<div class="panel panel-primary">
+					<div class="panel-body text-center">
+						<img th:src="@{|/assets/images/*{imagename1}|}">
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-body">
+						<ul>
+							<li th:text="*{productname}"></li>
+							<li th:text="*{price}"></li>
+							<li th:text="*{createdate}"></li>
+							<li th:text="*{category.categoryname}"></li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel-footer text-right">
+					<button class="btn btn-success" th:attr="ng-click=@{|cart.add(*{productidl})|}">
+						<i class="glyphicon glyphicon-shopping-cart"></i>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="panel panel-primary">
+					<div class="panel-heading">HÀNG CÙNG LOẠI</div>
+					<div class="panel-body">
+						<ul>
+							<li th:each="p:*{category.listproduct}"><a
+								th:href="@{|/product/detail/${p.productidl}|}" th:text="${p.productname}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
